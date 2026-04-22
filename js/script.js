@@ -53,64 +53,141 @@
 
     }
 
+    var initScrollAnimations = function() {
+      var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var selectors = [
+        '#company-services .icon-box',
+        '.product-card',
+        '#latest-blog .post-grid > [class^="col-"]',
+        '.review-item',
+        '.subscribe-content',
+        '#instagram .instagram-item',
+        '#footer .footer-menu',
+        '#footer-bottom .row > [class^="col-"]'
+      ];
+      var targets = document.querySelectorAll(selectors.join(','));
+
+      if (!targets.length) {
+        return;
+      }
+
+      if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+        Array.prototype.forEach.call(targets, function(target) {
+          target.classList.add('is-visible');
+        });
+        return;
+      }
+
+      document.body.classList.add('motion-ready');
+
+      var observer = new IntersectionObserver(function(entries, currentObserver) {
+        Array.prototype.forEach.call(entries, function(entry) {
+          if (!entry.isIntersecting) {
+            return;
+          }
+          entry.target.classList.add('is-visible');
+          currentObserver.unobserve(entry.target);
+        });
+      }, {
+        threshold: 0.18,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      Array.prototype.forEach.call(targets, function(target, index) {
+        target.style.setProperty('--reveal-delay', ((index % 4) * 0.08) + 's');
+        observer.observe(target);
+      });
+    }
+
+    var initSwipers = function() {
+      var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (typeof Swiper === 'undefined') {
+        return;
+      }
+
+      new Swiper(".main-swiper", {
+        loop: true,
+        speed: prefersReducedMotion ? 0 : 900,
+        effect: prefersReducedMotion ? "slide" : "fade",
+        fadeEffect: {
+          crossFade: true,
+        },
+        autoplay: prefersReducedMotion ? false : {
+          delay: 5000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        },
+        navigation: {
+          nextEl: "#billboard .swiper-arrow-next",
+          prevEl: "#billboard .swiper-arrow-prev",
+        },
+      });
+
+      var buildProductSwiper = function(selector, paginationSelector) {
+        return new Swiper(selector, {
+          speed: prefersReducedMotion ? 0 : 700,
+          grabCursor: true,
+          watchOverflow: true,
+          observer: true,
+          observeParents: true,
+          slidesPerView: 1.12,
+          spaceBetween: 16,
+          pagination: {
+            el: paginationSelector,
+            clickable: true,
+            dynamicBullets: true,
+          },
+          breakpoints: {
+            480: {
+              slidesPerView: 1.45,
+              spaceBetween: 18,
+            },
+            768: {
+              slidesPerView: 2,
+              spaceBetween: 22,
+            },
+            992: {
+              slidesPerView: 3,
+              spaceBetween: 24,
+            },
+            1280: {
+              slidesPerView: 4,
+              spaceBetween: 24,
+            }
+          },
+        });
+      };
+
+      buildProductSwiper(".product-swiper", "#mobile-products .swiper-pagination");
+      buildProductSwiper(".product-watch-swiper", "#smart-watches .swiper-pagination");
+
+      new Swiper(".testimonial-swiper", {
+        loop: true,
+        autoHeight: true,
+        speed: prefersReducedMotion ? 0 : 700,
+        autoplay: prefersReducedMotion ? false : {
+          delay: 5500,
+          disableOnInteraction: false,
+        },
+        navigation: {
+          nextEl: "#testimonials .swiper-arrow-next",
+          prevEl: "#testimonials .swiper-arrow-prev",
+        },
+        pagination: {
+          el: "#testimonials .swiper-pagination",
+          clickable: true,
+          dynamicBullets: true,
+        },
+      });
+    }
+
     $(document).ready(function() {
 
       searchPopup();
       initProductQty();
-
-      var swiper = new Swiper(".main-swiper", {
-        speed: 500,
-        navigation: {
-          nextEl: ".swiper-arrow-prev",
-          prevEl: ".swiper-arrow-next",
-        },
-      });         
-
-      var swiper = new Swiper(".product-swiper", {
-        slidesPerView: 4,
-        spaceBetween: 10,
-        pagination: {
-          el: "#mobile-products .swiper-pagination",
-          clickable: true,
-        },
-        breakpoints: {
-          0: {
-            slidesPerView: 2,
-            spaceBetween: 20,
-          },
-          980: {
-            slidesPerView: 4,
-            spaceBetween: 20,
-          }
-        },
-      });      
-
-      var swiper = new Swiper(".product-watch-swiper", {
-        slidesPerView: 4,
-        spaceBetween: 10,
-        pagination: {
-          el: "#smart-watches .swiper-pagination",
-          clickable: true,
-        },
-        breakpoints: {
-          0: {
-            slidesPerView: 2,
-            spaceBetween: 20,
-          },
-          980: {
-            slidesPerView: 4,
-            spaceBetween: 20,
-          }
-        },
-      }); 
-
-      var swiper = new Swiper(".testimonial-swiper", {
-        loop: true,
-        navigation: {
-          nextEl: ".swiper-arrow-prev",
-          prevEl: ".swiper-arrow-next",
-        },
-      }); 
+      initScrollAnimations();
+      initSwipers();
 
     }); // End of a document ready
 

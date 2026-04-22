@@ -1054,3 +1054,531 @@ figure.instagram-item img.insta-image {
 .post-navigation:focus svg {
     fill: var(--primary-color);
 }
+
+/* 14. Responsive polish and motion
+/*----------------------------------------------*/
+html {
+  scroll-behavior: smooth;
+}
+body {
+  overflow-x: hidden;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+section {
+  scroll-margin-top: 110px;
+}
+.navbar-brand .logo {
+  width: clamp(118px, 16vw, 150px);
+  height: auto;
+}
+#header-nav .container-fluid {
+  gap: 0.75rem;
+}
+#header-nav .offcanvas-end {
+  width: min(100vw, 420px);
+}
+
+/* Hero */
+#billboard {
+  padding-top: clamp(6.5rem, 10vw, 8rem);
+}
+#billboard .swiper-slide {
+  min-height: clamp(620px, 88vh, 860px);
+  display: flex;
+  align-items: center;
+}
+#billboard .container {
+  position: relative;
+  z-index: 1;
+}
+#billboard .row {
+  row-gap: 2rem;
+}
+#billboard .banner-content {
+  max-width: 34rem;
+}
+#billboard .banner-content h1.display-2 {
+  font-size: clamp(2.8rem, 6vw, 5.4rem) !important;
+  line-height: 0.96;
+  letter-spacing: -0.04em;
+  padding-bottom: clamp(1.5rem, 4vw, 3rem) !important;
+}
+#billboard .banner-content .btn {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+#billboard .banner-content .btn:hover,
+#billboard .banner-content .btn:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 30px rgba(33, 37, 41, 0.14);
+}
+#billboard .image-holder {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+}
+#billboard .image-holder img {
+  width: min(100%, 520px);
+  max-height: 72vh;
+  object-fit: contain;
+  filter: drop-shadow(0 28px 50px rgba(33, 37, 41, 0.18));
+  animation: hero-float 7s ease-in-out infinite;
+}
+.swiper-icon.swiper-arrow {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 18px 30px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+.swiper-icon.swiper-arrow svg {
+  transition: fill 0.3s ease, transform 0.3s ease;
+}
+.swiper-icon.swiper-arrow:hover,
+.swiper-icon.swiper-arrow:focus {
+  transform: translateY(-3px);
+  box-shadow: 0 22px 35px rgba(0, 0, 0, 0.12);
+}
+.swiper-icon.swiper-arrow:hover svg,
+.swiper-icon.swiper-arrow:focus svg {
+  transform: scale(1.08);
+}
+#billboard .swiper-arrow {
+  top: auto;
+  bottom: 2rem;
+}
+#billboard .swiper-arrow.swiper-arrow-prev {
+  left: clamp(1rem, 4vw, 2.5rem);
+}
+#billboard .swiper-arrow.swiper-arrow-next {
+  right: clamp(1rem, 4vw, 2.5rem);
+}
+
+/* Section headers */
+#mobile-products .display-header,
+#smart-watches .display-header,
+#latest-blog .display-header {
+  row-gap: 0.75rem;
+}
+
+/* Product cards */
+.product-store .swiper {
+  padding: 0.25rem 0.25rem 4.5rem;
+}
+.product-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.product-card .image-holder {
+  overflow: hidden;
+  border-radius: 24px;
+  aspect-ratio: 4 / 4.7;
+  background: var(--light-blue-color);
+}
+.product-card .image-holder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.product-card:hover .image-holder img {
+  transform: scale(1.04);
+}
+.product-card .card-detail {
+  order: 2;
+  gap: 0.75rem;
+}
+.product-card .card-title {
+  margin: 0;
+  line-height: 1.2;
+}
+.product-card .card-detail span {
+  font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+  font-weight: 700;
+}
+.product-store .product-card .cart-concern {
+  left: 0;
+  right: 0;
+  bottom: 1.25rem;
+  padding: 0 1rem;
+  transform: translateY(14px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.product-store .product-card:hover .cart-concern {
+  bottom: 1.25rem;
+  transform: none;
+}
+.product-store .product-card .cart-button .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  gap: 0.5rem;
+  border-radius: 999px;
+}
+.product-store .product-card .cart-concern svg {
+  margin-left: 0;
+}
+#mobile-products .swiper-pagination,
+#smart-watches .swiper-pagination {
+  bottom: 0;
+}
+.swiper-pagination span.swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  opacity: 0.45;
+  transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
+}
+.swiper-pagination span.swiper-pagination-bullet-active {
+  transform: scale(1.12);
+  opacity: 1;
+}
+
+/* Sale banner */
+#yearly-sale {
+  background-size: auto 100%;
+}
+#yearly-sale .row {
+  min-height: 420px;
+}
+#yearly-sale .text-content {
+  max-width: 32rem;
+}
+#yearly-sale h2.display-2 {
+  font-size: clamp(2.4rem, 5vw, 4.4rem) !important;
+  line-height: 0.96;
+}
+
+/* Blog */
+#latest-blog .post-grid {
+  row-gap: 2rem;
+}
+#latest-blog .card {
+  margin-right: 0 !important;
+  overflow: hidden;
+}
+#latest-blog .card-image {
+  overflow: hidden;
+  border-radius: 24px;
+  aspect-ratio: 16 / 11;
+}
+#latest-blog .card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+#latest-blog .col-lg-4:hover .card-image img {
+  transform: scale(1.05);
+}
+
+/* Testimonials */
+.review-content {
+  padding-inline: clamp(1.5rem, 6vw, 4.5rem);
+}
+.review-item blockquote {
+  font-size: clamp(1.5rem, 3vw, 2.35rem);
+  line-height: 1.22;
+  max-width: 24ch;
+  margin-inline: auto;
+}
+.review-content .swiper-arrow {
+  top: 50%;
+  bottom: auto;
+  transform: translateY(-50%);
+}
+.review-content .swiper-arrow.swiper-arrow-prev {
+  left: 0;
+}
+.review-content .swiper-arrow.swiper-arrow-next {
+  right: 0;
+}
+.review-content .swiper-arrow:hover,
+.review-content .swiper-arrow:focus {
+  transform: translateY(calc(-50% - 3px));
+}
+#testimonials .swiper-pagination {
+  position: static;
+  margin-top: 1.75rem;
+}
+
+/* Subscribe */
+.subscribe-content {
+  border-radius: 28px;
+}
+
+/* Instagram */
+#instagram .d-flex {
+  gap: 1rem;
+}
+#instagram figure.instagram-item {
+  width: calc(20% - 0.8rem);
+  margin: 0;
+  padding-right: 0 !important;
+}
+.instagram-item .image-link {
+  display: block;
+  overflow: hidden;
+  border-radius: 22px;
+  aspect-ratio: 1 / 1;
+}
+figure.instagram-item img.insta-image {
+  transition: transform 0.6s ease;
+}
+.instagram-item:hover img.insta-image {
+  transform: scale(1.05);
+}
+.instagram-item .icon-overlay {
+  inset: 0;
+  top: 0;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(14px);
+  background: linear-gradient(180deg, rgba(114, 174, 200, 0.12) 0%, rgba(33, 37, 41, 0.62) 100%);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.instagram-item:hover .icon-overlay {
+  opacity: 1;
+  transform: none;
+}
+
+/* Footer */
+#footer .footer-top-area .row,
+#footer-bottom .row {
+  row-gap: 1.25rem;
+}
+.social-links ul {
+  flex-wrap: wrap;
+  row-gap: 0.5rem;
+}
+.social-links li {
+  padding-right: 1rem;
+}
+#footer-bottom .Shipping,
+#footer-bottom .payment-method {
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+#footer-bottom .card-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+#footer-bottom .card-wrap img {
+  width: auto;
+  height: 28px;
+  object-fit: contain;
+}
+
+/* Scroll reveal */
+body.motion-ready #company-services .icon-box,
+body.motion-ready .product-card,
+body.motion-ready #latest-blog .post-grid > [class^="col-"],
+body.motion-ready .review-item,
+body.motion-ready .subscribe-content,
+body.motion-ready #instagram .instagram-item,
+body.motion-ready #footer .footer-menu,
+body.motion-ready #footer-bottom .row > [class^="col-"] {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.75s ease, transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0s);
+}
+body.motion-ready #company-services .icon-box.is-visible,
+body.motion-ready .product-card.is-visible,
+body.motion-ready #latest-blog .post-grid > [class^="col-"].is-visible,
+body.motion-ready .review-item.is-visible,
+body.motion-ready .subscribe-content.is-visible,
+body.motion-ready #instagram .instagram-item.is-visible,
+body.motion-ready #footer .footer-menu.is-visible,
+body.motion-ready #footer-bottom .row > [class^="col-"].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes hero-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  #header-nav .offcanvas-end {
+    width: min(100vw, 360px);
+  }
+  .offcanvas.show .nav-item a.nav-link {
+    font-size: clamp(1.2rem, 5vw, 1.6rem);
+  }
+  .offcanvas.show .offcanvas-body .navbar-nav {
+    padding-left: 0;
+    gap: 0.5rem;
+  }
+  #yearly-sale {
+    background-size: min(240px, 42vw) auto;
+    background-position: right -1rem bottom;
+  }
+  #yearly-sale .text-content {
+    margin-left: 0 !important;
+    padding: 2rem !important;
+  }
+  .review-content {
+    padding-inline: 1rem;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  section {
+    scroll-margin-top: 90px;
+  }
+  #billboard .swiper-slide {
+    min-height: auto;
+    padding-bottom: 5.5rem;
+  }
+  #billboard .banner-content {
+    margin-top: 0 !important;
+    max-width: none;
+  }
+  #billboard .image-holder {
+    margin-top: 0 !important;
+    opacity: 1 !important;
+  }
+  #billboard .image-holder img {
+    width: min(100%, 360px);
+    max-height: 45vh;
+    margin-inline: auto;
+  }
+  #billboard .swiper-arrow {
+    top: auto;
+    bottom: 0.75rem;
+    width: 48px;
+    height: 48px;
+  }
+  .product-store {
+    overflow: hidden;
+  }
+  .product-store .swiper {
+    padding-bottom: 4rem;
+  }
+  .product-store .product-card .cart-concern {
+    position: static !important;
+    order: 3;
+    opacity: 1;
+    transform: none;
+    padding: 0;
+    margin-top: 0.85rem;
+  }
+  .product-store .product-card .cart-button .btn {
+    width: 100%;
+  }
+  .product-card .card-detail {
+    padding-inline: 0.25rem;
+  }
+  #latest-blog .col-lg-4 {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  #latest-blog .card-body {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .review-content .swiper-arrow {
+    display: none !important;
+  }
+  #instagram figure.instagram-item {
+    width: calc(50% - 0.5rem);
+  }
+  .subscribe-content {
+    padding: 2rem 1.25rem;
+  }
+  .subscribe-content .display-header {
+    padding-right: 0 !important;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  .subscription-form .input-group {
+    gap: 0.75rem;
+  }
+  .subscription-form button {
+    margin-bottom: 0;
+  }
+  #footer-bottom .Shipping,
+  #footer-bottom .payment-method {
+    justify-content: center;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .navbar-toggler svg.navbar-icon {
+    width: 42px;
+    height: 42px;
+  }
+  #header-nav {
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+  }
+  #billboard {
+    padding-top: 6rem;
+  }
+  #billboard .banner-content h1.display-2 {
+    font-size: clamp(2.2rem, 11vw, 2.9rem) !important;
+  }
+  #yearly-sale {
+    background-size: min(180px, 48vw) auto;
+    background-position: right -1.75rem bottom -0.75rem;
+  }
+  #yearly-sale .text-content {
+    padding: 1.5rem !important;
+  }
+  #yearly-sale h2.display-2 {
+    font-size: clamp(2rem, 10vw, 2.65rem) !important;
+  }
+  .product-store .swiper {
+    padding-left: 0.1rem;
+    padding-right: 0.1rem;
+  }
+  #instagram figure.instagram-item {
+    width: 100%;
+  }
+  .social-links ul {
+    justify-content: center;
+  }
+  #footer-bottom .card-wrap {
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  body.motion-ready #company-services .icon-box,
+  body.motion-ready .product-card,
+  body.motion-ready #latest-blog .post-grid > [class^="col-"],
+  body.motion-ready .review-item,
+  body.motion-ready .subscribe-content,
+  body.motion-ready #instagram .instagram-item,
+  body.motion-ready #footer .footer-menu,
+  body.motion-ready #footer-bottom .row > [class^="col-"] {
+    opacity: 1;
+    transform: none;
+  }
+}
